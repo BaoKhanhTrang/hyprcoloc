@@ -8,12 +8,21 @@ HyPrColoc is an efficient deterministic Bayesian divisive clustering algorithm u
 ## Functions
 * hyprcoloc - identifies clusters of colocalized traits and candidate causal SNPs using the HyPrColoc Bayesian divisive clustering algorithm.
 
-## Installation
+## Installation on HPC couldn't get shared GCCcore to include LD libs , better to create a conda envs to house gcc of choice
+### In linux
+1. conda create -n gcc gcc gmp mpfr fribidi conda-forge::r-textshaping harfbuzz conda-forge::r-textshaping libtiff conda-forge::pkg-config conda-forge::r-ragg anaconda::fontconfig conda-forge::libjpeg-turbo conda-forge::pandoc
+2. cd anaconda3/envs/gcc/include/
+3. ln -s harfbuzz/* ./
+4. ln -s fribidi/* ./
+5. ln -s freetype2/* ./
+   
+### R
 1. install.packages("devtools")
 2. library(devtools)
-3. install_github("cnfoley/hyprcoloc", build_opts = c("--resave-data", "--no-manual"), build_vignettes = TRUE)
-4. library(hyprcoloc)
-5. browseVignettes("hyprcoloc")
+3. Sys.setenv(RSTUDIO_PANDOC="/home/trangk/anaconda3/pkgs/pandoc-2.19.2-h32600fe_1/bin")
+4. install_github("cnfoley/hyprcoloc", build_opts = c("--resave-data", "--no-manual"), build_vignettes = TRUE)
+5. library(hyprcoloc)
+6. browseVignettes("hyprcoloc")
 
 ## If issue with installation (owing to c++ compiler)
 Try replacing 3 above with previous package version:
